@@ -5,15 +5,13 @@ export const reset = css`
         margin: 0;
         padding: 0;
         height: 100%;
-        background-color: #fafafa;
-        font-size: 16px;
+        background-color: #d2b48c;
     }
     ul{
         list-style-type: none;
         margin: 0;
         padding: 0;
     }
-
     a{
         text-decoration: none;
         color: #000000;
