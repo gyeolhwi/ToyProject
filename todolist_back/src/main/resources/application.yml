@@ -1,5 +1,5 @@
 spring:
-  profiles:
+  profies:
     active: local
     group:
       local: local, common, secret

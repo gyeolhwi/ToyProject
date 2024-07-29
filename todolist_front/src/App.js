@@ -1,13 +1,18 @@
+import { Global } from '@emotion/react';
 import './App.css';
+import MainContainer from './components/MainContainer/MainContainer';
+import { reset } from './styles/global';
 
 function App() {
   return (
-  <>
   <biv class="ground">
-    <header>
+    <Global styles={reset} />
+      <header>
       <h1>Todo List</h1>
+      <p>
       <button>로그인</button>
       <button>회원가입</button>
+      </p>
     </header>
     <body>
       <div class="entire">
@@ -29,11 +34,10 @@ function App() {
         <input type='text'
         name=""/>
         <button>A</button>
-        <button>B</button>
+        <button>B</button>s
       </div>
     </body>
   </biv>
-  </>
   );
 }
 
