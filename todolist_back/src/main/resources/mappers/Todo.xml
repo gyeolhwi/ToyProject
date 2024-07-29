@@ -5,7 +5,26 @@
 <mapper namespace="com.toyproject.todolist.repository.TodoMapper">
 
     <insert id="save" parameterType="com.toyproject.todolist.entity.Todo">
+        insert into todo_tb
+        values
+            (0, #{todo_text}, #{todo_chk_id}, #{todo_date})
     </insert>
+    <update id="update">
+        update todo_tb
+        set
+            todo_text = #{todo_text},
+            todo_chk_id = #{todo_chk_id},
+            todo_date = #{todo_date}
+        from
+            todo_id = #{todo_id}
+    </update>
+    <delete id="delete" parameterType="com.toyproject.todolist.entity.Todo">
+        delete
+        from
+            todo_tb tt
+        where
+            tt.todo_id = #{todo_id}
+    </delete>
 
     <select id="getListAll" resultType="com.toyproject.todolist.entity.Todo">
         select
