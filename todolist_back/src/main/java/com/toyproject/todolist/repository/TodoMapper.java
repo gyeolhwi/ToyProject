@@ -10,4 +10,8 @@ public interface TodoMapper {
     int save(Todo todo) ;
 
     List<Todo> getListAll(int userId);
+
+    int update(Todo todo);
+
+    int delete(int todoId);
 }

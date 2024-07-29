@@ -19,12 +19,6 @@ public class Todo {
     private int todo_chk_id;
     private LocalDate todo_date;
 
-
-    private int user_id;
-    private String user_name;
-    private String user_password;
-    private LocalDate register_date;
-
     public TodoDto.RespDto toDto(){
         return TodoDto.RespDto.builder()
                 .todoId(todo_id)
