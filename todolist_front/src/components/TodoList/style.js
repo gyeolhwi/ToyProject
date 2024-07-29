@@ -12,11 +12,8 @@ export const container =css`
     align-items : center;
     margin: 50px auto;
     /* transform: translate(50%,50%); */
-    width: 1800px;
-    height: 850px;
-    border: 1px solid black;
-
 `;
+
 
 export const listContainer =css`
         display: flex;
@@ -36,6 +33,7 @@ export const todoListContainer = css`
             margin: 20px 0 30px 60px;
         }
 `;
+
 export const list =css`
     display: flex;
     flex-direction: row;

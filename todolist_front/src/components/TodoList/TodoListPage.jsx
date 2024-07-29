@@ -19,7 +19,7 @@ function TodoListPage(props) {
                         <div css={s.todoListContainer}>
                             <h2>전체</h2>
                             <div css={s.list}>
-                                <input type="checkbox"></input>
+                                <input  type="checkbox" />
                                 <p>텍스트</p>
                                 <button>수정</button>
                                 <button>삭제</button>
