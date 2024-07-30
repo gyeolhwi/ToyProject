@@ -9,6 +9,7 @@
         values
             (0, #{todo_text}, #{todo_chk_id}, #{todo_date})
     </insert>
+
     <update id="update">
         update todo_tb
         set
@@ -18,6 +19,7 @@
         from
             todo_id = #{todo_id}
     </update>
+
     <delete id="delete" parameterType="com.toyproject.todolist.entity.Todo">
         delete
         from
