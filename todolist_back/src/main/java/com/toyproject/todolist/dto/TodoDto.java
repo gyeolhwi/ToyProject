@@ -33,6 +33,4 @@ public class TodoDto {
         private String todoText;
         private int todoChkId;
     }
-
-
 }

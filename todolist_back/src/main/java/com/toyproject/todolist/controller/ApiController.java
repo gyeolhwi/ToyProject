@@ -10,10 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@CrossOrigin // config 허용으로 사용안해도 됨
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class ApiController {
+
 
     @Autowired
     private TodoService todoService;
@@ -24,13 +25,6 @@ public class ApiController {
         return ResponseEntity.ok().body(todoService.getListAll(userid));
     }
 
-
-    @DeleteMapping("/todo/{todo_id}")
-    public ResponseEntity<?> removeId(@PathVariable int todo_id) {
-        return ResponseEntity.ok().body(todoService.removeTodo());
-    }
-
-
     @PostMapping("/todo/add")
     public ResponseEntity<?> addTodo(@RequestBody TodoDto.ReqDto dto) {
         log.info("dto : {}", dto);
@@ -38,8 +32,8 @@ public class ApiController {
     }
 
     //해당 id 찾아서 수정
-    @PutMapping("/todo/edit")
-    public ResponseEntity<?> editTodo(@RequestBody ReqUpdateTodoDto reqDto) {
+    @PutMapping("/todo/{todo_id}")
+    public ResponseEntity<?> editTodo(@PathVariable int todo_id, @RequestBody ReqUpdateTodoDto reqDto) {
         return ResponseEntity.ok().body(todoService.updateTodo(reqDto));
     }
 
