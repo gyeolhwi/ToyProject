@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @Slf4j
 @CrossOrigin // config 허용으로 사용안해도 됨
 @RestController
@@ -27,7 +28,7 @@ public class ApiController {
 
     @DeleteMapping("/todo/{todo_id}")
     public ResponseEntity<?> removeId(@PathVariable int todo_id) {
-        return ResponseEntity.ok().body(todoService.removeTodo());
+//        return ResponseEntity.ok().body(todoService.removeTodo());
     }
 
 
