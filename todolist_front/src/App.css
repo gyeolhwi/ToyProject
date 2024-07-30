@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Nanumpen";
+    src: url("./fonts/NanumPen.ttf");
+}
+
+@font-face {
+    font-family: "NanumBarunpenR";
+    src: url("./fonts/NanumBarunpenR.ttf");
+}
+
+@font-face {
+    font-family: "NanumBarunpenB";
+    src: url("./fonts/NanumBarunpenB.ttf");
+}
