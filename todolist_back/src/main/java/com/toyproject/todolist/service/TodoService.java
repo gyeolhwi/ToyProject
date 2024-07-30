@@ -12,6 +12,9 @@ public interface TodoService {
      // select 리스트 유저의 text
      List<TodoDto.RespDto> getListAll(int userid);
 
+     // 삭제
+     int removeTodo(int todo_id);
+
      // update 수정(id,수정 할 text)
      int updateTodo(ReqUpdateTodoDto reqDto);
 

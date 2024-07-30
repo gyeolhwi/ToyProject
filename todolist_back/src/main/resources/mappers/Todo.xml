@@ -28,6 +28,7 @@
             tt.todo_id = #{todo_id}
     </delete>
 
+
     <select id="getListAll" resultType="com.toyproject.todolist.entity.Todo">
         select
             tt.todo_id,
@@ -39,4 +40,5 @@
         where
             ut.user_id = #{userId}
     </select>
+
 </mapper>

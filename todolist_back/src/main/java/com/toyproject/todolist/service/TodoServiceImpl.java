@@ -26,6 +26,12 @@ public class TodoServiceImpl implements TodoService {
         return todoMapper.getListAll(userid).stream().map(Todo::toDto).collect(Collectors.toList());
     }
 
+    // 삭제
+    @Override
+    public int removeTodo(int todo_id) {
+        return 0;
+    }
+
     @Override
     public int updateTodo(ReqUpdateTodoDto reqDto) {
         // Todo에 객체에 reqDto데이터들을 담음

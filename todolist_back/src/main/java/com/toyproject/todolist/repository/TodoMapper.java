@@ -1,6 +1,7 @@
 package com.toyproject.todolist.repository;
 
 import com.toyproject.todolist.entity.Todo;
+import com.toyproject.todolist.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface TodoMapper {
     int save(Todo todo) ;
 
     List<Todo> getListAll(int userId);
+
 
     int update(Todo todo);
 
