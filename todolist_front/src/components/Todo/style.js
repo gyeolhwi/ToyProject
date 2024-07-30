@@ -104,6 +104,26 @@ export const dataContainer =css`
     background-size: 100% 1.85em;
     border-radius: 5%;
 `;
+// 추가했습니다 확인 후 수정해주세요
+export const successDataContainer=css`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    ul{
+        display: flex;
+        width: 100%;
+    }
+    li,button{
+        height: 30px;
+    }
+    li:nth-of-type(1){
+        margin-right: 25px;
+        width: 300px;
+        align-content: center;
+        text-align: center;
+    }
+`;
+// ----------------------------------------
 
 export const section =css`
     display: flex;
@@ -122,7 +142,7 @@ export const content =css`
     justify-content: center;
     align-items: center;
     height: 50px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 5px 0px;
     input {
         margin: 0;
         height: 40px;
@@ -157,7 +177,7 @@ export const ckLabel =css`
     display: block;
     background-color: transparent;
     &::after{
-        content: "❌";
+        content: "📌";
     }
 `;
 export const ckInput =css`
