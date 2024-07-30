@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TodoServiceImpl implements TodoService{
+public class TodoServiceImpl implements TodoService {
 
     @Autowired
     private TodoMapper todoMapper;
@@ -28,6 +28,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public int updateTodo(ReqUpdateTodoDto reqDto) {
+        // Todo에 객체에 reqDto데이터들을 담음
         Todo todo = Todo.builder()
                 .todo_id(reqDto.getTodoId())
                 .todo_text(reqDto.getTodoText())

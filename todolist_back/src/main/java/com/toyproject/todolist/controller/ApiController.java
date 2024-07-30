@@ -32,8 +32,8 @@ public class ApiController {
     }
 
     //해당 id 찾아서 수정
-    @PutMapping("/todo/{todo_id}")
-    public ResponseEntity<?> editTodo(@PathVariable int todo_id, @RequestBody ReqUpdateTodoDto reqDto) {
+    @PutMapping("/todo/edit")
+    public ResponseEntity<?> editTodo(@RequestBody ReqUpdateTodoDto reqDto) {
         return ResponseEntity.ok().body(todoService.updateTodo(reqDto));
     }
 
