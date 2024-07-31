@@ -49,4 +49,25 @@ public class TodoServiceImpl implements TodoService {
     public int deleteTodo(int todoId) {
         return todoMapper.delete(todoId);
     }
+
+    // 로그인 구현 후 사용 될 메소드 (테스트 안 했음)
+    @Override
+    public List<TodoDto.userRespDto> getListTodo(TodoDto.userReqDto dto) {
+        return todoMapper.getList(dto.getUserId(), dto.getTodoDate()).stream().map(Todo::userToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public int addUserTodo(TodoDto.userReqDto dto) {
+        return todoMapper.add(dto.toInsertEntity());
+    }
+
+    @Override
+    public int editUserTodo(TodoDto.userReqDto dto) {
+        return todoMapper.edit(dto.toEditEntity());
+    }
+
+    @Override
+    public int editChk(TodoDto.userReqDto dto) {
+        return todoMapper.edit(dto.toEditEntity());
+    }
 }
