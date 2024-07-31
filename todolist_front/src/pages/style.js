@@ -62,7 +62,7 @@ export const login =css`
     border-top: 30px solid #fcfca1;
     background-color: #fafad2;
     box-shadow: 0px 5px 5px #dbdbdb;
-    transform: rotate(0.8deg);
+/* 
     input {
         width: 300px;
         height: 40px;
@@ -73,7 +73,7 @@ export const login =css`
         font-size: 22px;
         background: transparent;
         transform: rotate(-0.8deg);
-    }
+    } */
     button {
         width: 280px;
         height: 40px;
@@ -83,13 +83,41 @@ export const login =css`
         color: #696969;
         border: none;
         border-bottom: 1px dashed #dbdbdb;
-        transform: rotate(-0.8deg);
         background: transparent;
         &:hover{
-            color: #505050;
+            color: #9e0000;
         }
         &:active{
-            color: #161616;
+            color: #ff0000;
         }
     }
-`;
+`
+export const names =css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    span {
+        width: 60px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Nanumpen";
+        font-size: 22px;
+        background-color: #fafad2;
+        }
+    input {
+        width: 250px;
+        height: 40px;
+        border: none;
+        border-bottom: 1px dashed #dbdbdb;
+        margin: 10px 0px 10px 0px;
+        font-family: "Nanumpen";
+        font-size: 22px;
+        background: transparent;
+        }
+    
+`; 
+;
