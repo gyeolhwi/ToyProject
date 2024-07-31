@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function useInput(props) {
-    const [textInput, setTextInput] = useState();
+    const [textInput, setTextInput] = useState("");
 
     onchange = (e) => {
         setTextInput( e.target.value);

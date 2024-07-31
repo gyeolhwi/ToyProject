@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const layout =css`
+export const layout = css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,7 @@ export const layout =css`
     height: 100%;
 `;
 
-export const title =css`
+export const title = css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,7 +30,7 @@ export const title =css`
     }
 `;
 
-export const login =css`
+export const login = css`
     transform: translate(400%,-100%);
     width: 160px;
     border-top: 1px solid red;
@@ -44,7 +44,7 @@ export const login =css`
     }
 `;
 
-export const time =css`
+export const time = css`
     display: flex;
     justify-content: space-between;
     margin: 10px 0px;
@@ -62,7 +62,7 @@ export const time =css`
     }
 `;
 
-export const container =css`
+export const container = css`
     display: flex;
     box-sizing: border-box;
     justify-content: space-between;
@@ -70,7 +70,7 @@ export const container =css`
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 
-export const dataContainer =css`
+export const dataContainer = css`
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -94,7 +94,7 @@ export const dataContainer =css`
     border-radius: 5%;
 `;
 // 추가했습니다 확인 후 수정해주세요
-export const successDataContainer=css`
+export const successDataContainer = css`
     display: flex;
     flex-direction: row;
     width: 350px;
@@ -135,16 +135,29 @@ export const successDataContainer=css`
             margin: 0;
         }
     }
-    li:nth-of-type(1){
+    li:nth-of-type(2){
         margin: 0px 12px;
         width: 300px;
         align-content: center;
         text-align: center;
     }
 `;
+export const chkBox = css`
+    label::after{
+        content: "🤍";
+    }
+
+    input{
+        display: none;
+    }
+
+    input:checked + label::after{
+        content: "💗";
+    }
+`;
 // ----------------------------------------
 
-export const section =css`
+export const section = css`
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -167,7 +180,7 @@ export const section =css`
         }
 `;
 
-export const content =css`
+export const content = css`
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid red;
@@ -218,14 +231,14 @@ export const content =css`
     }
 `;
 
-export const ckLabel =css`
+export const ckLabel = css`
     display: block;
     background-color: transparent;
     &::after{
         content: "📌";
     }
 `;
-export const ckInput =css`
+export const ckInput = css`
     display: none;
     background-color: transparent;
     &:checked+label::after{
