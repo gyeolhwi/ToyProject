@@ -5,38 +5,52 @@ import { useRecoilState } from 'recoil';
 import { getDate, todoAtom } from '../../atoms/atom';
 import useInput from '../../hooks/useInput';
 import * as s from './style';
-import axios from 'axios';
 import api from '../../apis/instance';
 
 
 function TodoList(props) {
     const addInput = useInput();
-    const [text,setText] = useState("");
+    const [text, setText] = useState("");
     // 객체 들어올거임
-    const [todo,setTodo] = useRecoilState(todoAtom);
-    const [dateYear,setgetDateYear] = useRecoilState(getDate);
+    const [todo, setTodo] = useRecoilState(todoAtom);
+    const [dateYear, setgetDateYear] = useRecoilState(getDate);
 
-    const handleOnchange = (e)=>{
+    const handleOnchange = (e) => {
         setText(e.target.value);
     }
 
     // 처음에 조회 , 추가,수정,날짜변경시에 일어나야함
-    useEffect(()=>{
-        const list = getRender();
-        setTodo(list);
-    },[]);
+    useEffect(() => {
+        getRender();
+    }, []);
 
-    const getRender = async () =>{
+
+    // const render = async () => {
+    //     let list = null;
+    //     try {
+    //         const rs = await getRender();
+    //         list = rs.data;
+    //         setTodo(list);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    //     return list;
+    // }
+
+
+    const getRender = async () => {
         let result = null;
         try {
-            const rs = await axios.get(api.put("todoes"))
+            const rs = await api.get("todoes");
             result = rs.data;
+            setTodo(result);
+            console.log(rs.data);
         } catch (e) {
             console.error(e);
         }
         return result;
     }
-    
+
 
     const navigator = useNavigate();
 
@@ -46,9 +60,7 @@ function TodoList(props) {
 
     const handleKeydown = (e) => {
         if (e.keyCode === 13) {
-            console.log(addInput.textInput);
             console.log(todo);
-            console.log(dateYear.toDay);
         }
     }
 
@@ -83,143 +95,22 @@ function TodoList(props) {
                         </div>
                         {/* section은 스크롤용 */}
                         <div css={s.section}>
-                            {/* 추가한 부분 */}
-                            <div css={s.successDataContainer}>
+                                {todo.map(todo=>(
+                                    <div css={s.successDataContainer} key={todo.id}>
                                 <ul>
                                     <li css={s.chkBox}>
                                         <input type="checkbox" id='chk' />
                                         <label htmlFor="chk" ></label>
                                     </li>
-                                    <li>글자수</li>
+                                    <li>{todo.text}</li>
                                     <li>
                                         <button>&nbsp;수정&nbsp;</button>
                                         <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>  <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
-                                        <label htmlFor="chk"></label>
-                                    </li>
-                                    <li>글자수</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
+                        ))}
 
-
-
-                            {/*  */}
-                            {/* 추가한 부분 */}
-
-                            {/*  */}
                         </div>
                     </div>
                     <div css={s.dataContainer}>

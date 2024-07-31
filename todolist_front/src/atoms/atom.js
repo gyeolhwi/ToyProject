@@ -7,13 +7,13 @@ const month = date.getMonth();
 
 export const todoAtom = atom({
     key: "todo",
-    default: {
+    default: [{
         todoId : "",
         todoUserId:"",
         todoText:"",
         todoChkId:"",
         todoDate:""
-    }
+    }]
 })
 
 export const getDate = atom({
