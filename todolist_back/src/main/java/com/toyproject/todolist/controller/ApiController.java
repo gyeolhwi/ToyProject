@@ -32,11 +32,10 @@ public class ApiController {
     }
 
     // 전체 조회
-    @GetMapping("/todoes")
-    public ResponseEntity<?> GetListTodoes() {
-        return ResponseEntity.ok().body(todoService.getListTodoes());
-    }
-
+   @GetMapping("/todoes")
+   public ResponseEntity<?> getList() {
+        return ResponseEntity.ok().body(todoService.getAllTodoList());
+   }
 
     @PostMapping("/todo/add")
     public ResponseEntity<?> addTodo(@RequestBody TodoDto.ReqDto dto) {

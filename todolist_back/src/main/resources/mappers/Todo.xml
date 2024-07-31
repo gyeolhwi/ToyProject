@@ -59,13 +59,14 @@
     </select>
 
     <!-- 전체 조회-->
-    <select id="getListTodoes" resultType="com.toyproject.todolist.entity.Todo">
+    <select id="getAllTodoList" resultType="com.toyproject.todolist.entity.Todo">
         select
             *
         from
             todo_tb
         order by
             todo_id desc
+
     </select>
 
     <insert id="add">
