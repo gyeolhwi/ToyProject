@@ -32,7 +32,7 @@ public class ApiController {
     }
 
     // 전체 조회
-    @GetMapping("todoes")
+    @GetMapping("/todoes")
     public ResponseEntity<?> GetListTodoes() {
         return ResponseEntity.ok().body(todoService.getListTodoes());
     }

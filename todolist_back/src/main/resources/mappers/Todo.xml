@@ -58,11 +58,7 @@
     <!-- 다건 조회-->
     <select id="getListTodoes" resultType="com.toyproject.todolist.entity.Todo">
         select
-            todo_id
-            todo_user_id
-            todo_text
-            todo_chk_id
-            todo_date
+            *
         from
             todo_tb
     </select>
