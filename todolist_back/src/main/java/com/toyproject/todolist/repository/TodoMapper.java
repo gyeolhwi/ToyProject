@@ -1,7 +1,6 @@
 package com.toyproject.todolist.repository;
 
 import com.toyproject.todolist.entity.Todo;
-import com.toyproject.todolist.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,6 +14,9 @@ public interface TodoMapper {
     int update(Todo todo);
 
     int delete(int todoId);
+
+    // 전체 조회
+    List<Todo> getListTodoes();
 
     //로그인 구현 후 사용 될 메소드(테스트X)
     List<Todo> getList(int userId, String date_id);
