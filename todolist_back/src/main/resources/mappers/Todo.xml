@@ -61,6 +61,8 @@
             *
         from
             todo_tb
+        order by
+            todo_id desc
     </select>
 
     <insert id="add">
