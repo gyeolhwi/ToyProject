@@ -12,8 +12,8 @@ function TodoList(props) {
 
     const [todo, setTodo] = useState();
 
-    const handleLoginClick = () => {
-        navigator("/login");
+    const handleLoginClick = (e) => {
+        navigator(e.target.name);
     }
 
     const handleAddClick = () => { }
@@ -36,8 +36,8 @@ function TodoList(props) {
                     <h1>TodoList</h1>
                 </div>
                 <div css={s.login}>
-                    <button onClick={handleLoginClick}>로그인</button>
-                    <button>회원가입</button>
+                    <button  name='/login' onClick={handleLoginClick}>로그인</button>
+                    <button name='/register' onClick={handleLoginClick}> 회원가입</button>
                 </div>
                 <input css={s.time} type='month' name='time' />
             </header>
