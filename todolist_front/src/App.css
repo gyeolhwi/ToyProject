@@ -12,3 +12,8 @@
     font-family: "NanumBarunpenB";
     src: url("./fonts/NanumBarunpenB.ttf");
 }
+
+@font-face {
+    font-family: "NanumGyuriDiary";
+    src: url("./fonts/나눔손글씨\ 규리의\ 일기.ttf");
+}

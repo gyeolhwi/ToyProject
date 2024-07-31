@@ -36,41 +36,30 @@ export const login =css`
     border-top: 1px solid red;
     border-bottom: 1px solid red;
     border-right: 1px solid red;
-    button {    
+    button {
+        font-family: "NanumBarunpenB";
+        font-size: 15px;
         border-left: 1px solid red;
         width: 80px;
     }
 `;
 
-export const head =css`
+export const time =css`
     display: flex;
     justify-content: space-between;
     margin: 10px 0px;
-    button {
-        transform: translate(-778%);
+    padding-bottom: 5px;
+    font-family: "NanumBarunpenR";
+    font-size: 20px;
+    text-align: end;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid red;
+    width: 140px;
+    transform: translate(468%);
+    &:focus {
+        outline:none;
     }
-    input {
-        padding-bottom: 5px;
-        font-family: "NanumBarunpenR";
-        font-size: 20px;
-        text-align: end;
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid red;
-        width: 130px;
-        transform: translate(468%);
-        &:focus {
-            outline:none;
-        }
-    }
-`;
-
-export const add =css`
-    width: 80px;
-    border: 1px solid red;
-`;
-
-export const time =css`
 `;
 
 export const container =css`
@@ -108,16 +97,46 @@ export const dataContainer =css`
 export const successDataContainer=css`
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 350px;
+    margin: 5px 0px;
+    padding: 4px 0px;
+    font-family: "NanumGyuriDiary";
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    box-shadow: 3px 5px 5px #dbdbdb;
+    
     ul{
         display: flex;
         width: 100%;
     }
-    li,button{
-        height: 30px;
+    li{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 0px;
+        button {
+            font-family: "NanumGyuriDiary";
+            font-weight: bold;
+            font-size: 18px;
+            color: red;
+            text-decoration: underline;
+            text-decoration-style: double;
+            text-underline-offset: 8px;
+            height: 32px;
+            width: 40px;
+            padding: 5px 0px;
+            margin-right: 5px;
+            background-color: transparent;
+            border: none;
+            
+        }
+        button:nth-of-type(1){
+            margin: 0;
+        }
     }
     li:nth-of-type(1){
-        margin-right: 25px;
+        margin: 0px 12px;
         width: 300px;
         align-content: center;
         text-align: center;
@@ -129,11 +148,24 @@ export const section =css`
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
+    align-items: center;
     overflow-y: auto;
+    div:nth-of-type(2n-1) {
+        border-left: 30px solid #fdc3ff;
+        background-color: #ffe0fd;
+    }
+    div:nth-of-type(2n) {
+        border-left: 30px solid #fcfca1;
+        background-color: #fafad2;
+    }
+    div:nth-of-type(3n) {
+        border-left: 30px solid #a1befc;
+        background-color: #d2e5fa;
+    }
     ::-webkit-scrollbar {
             display:none;
         }
-`
+`;
 
 export const content =css`
     display: flex;
@@ -142,16 +174,22 @@ export const content =css`
     justify-content: center;
     align-items: center;
     height: 50px;
-    margin: 10px 0px 5px 0px;
+    margin: 10px 0px 10px 0px;
     input {
+        justify-content: center;
+        align-items: center;
         margin: 0;
+        margin-right: 5px;
         height: 40px;
         width: 280px;
         background-color: transparent;
         text-align: left;
         border: none;
-        padding-left: 10px;
+        padding: 5px 0px 5px 10px;
         line-height: 2.5;
+        font-family: "NanumGyuriDiary";
+        font-weight: bold;
+        font-size: 18px;
     }
     p {
         margin: 0;
@@ -164,9 +202,16 @@ export const content =css`
         line-height: 2.5;
     }
     button {
-        height: 30px;
-        border: 1px solid red;
-        margin-right: 3px;
+        margin: 0px 3px;
+        font-family: "NanumGyuriDiary";
+        font-weight: bold;
+        font-size: 20px;
+        color: red;
+        height: 50px;
+        width: 50px;
+        background-color: transparent;
+        border: none;
+        padding: 5px 0px;
     }
     &:nth-of-type(1) {
         margin-top: 2px;
