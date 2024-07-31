@@ -27,12 +27,12 @@ public class ApiController {
 
 
     @DeleteMapping("/todo/dd")
-    public ResponseEntity<?> removeId( int todo_id) {
+    public ResponseEntity<?> removeId(int todo_id) {
         return ResponseEntity.ok().body(todoService.removeTodo(todo_id));
     }
 
     // 전체 조회
-    @GetMapping("todoes")
+    @GetMapping("/todoes")
     public ResponseEntity<?> GetListTodoes() {
         return ResponseEntity.ok().body(todoService.getListTodoes());
     }

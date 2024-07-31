@@ -48,10 +48,10 @@ public class TodoServiceImpl implements TodoService {
         // dto리스트에 add한다. => 반복문이 다 끝나면 respDtoList에 dto로 바꾼 객체들이 다 들어가 있게된다.
         for( Todo todo : todoes) {
             RespListTodoesDto respDto = RespListTodoesDto.builder()
-                    .id(todo.getTodo_id())
-                    .text(todo.getTodo_text())
-                    .chkId(todo.getTodo_chk_id())
-                    .date(todo.getTodo_date())
+                    .todoId(todo.getTodo_id())
+                    .todoText(todo.getTodo_text())
+                    .todoChkId(todo.getTodo_chk_id())
+                    .todoDate(todo.getTodo_date())
                     .build();
 
             respDtoList.add(respDto);
