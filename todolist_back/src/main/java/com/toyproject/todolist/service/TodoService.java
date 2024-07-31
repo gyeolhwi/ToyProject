@@ -20,4 +20,17 @@ public interface TodoService {
 
      // delete 삭제(todo_id)
      int deleteTodo(int todo_id);
+
+
+     // 로그인 구현
+
+     List<TodoDto.userRespDto> getListTodo(TodoDto.userReqDto dto);
+
+     int addUserTodo(TodoDto.userReqDto dto);
+
+     int editUserTodo(TodoDto.userReqDto dto);
+
+     int editChk(TodoDto.userReqDto dto);
+
+
 }

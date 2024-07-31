@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Slf4j
-@CrossOrigin // config 허용으로 사용안해도 됨
+//@CrossOrigin // config 허용으로 사용안해도 됨
 @RestController
 @RequestMapping("/api/v1")
 public class ApiController {
@@ -28,7 +28,7 @@ public class ApiController {
 
     @DeleteMapping("/todo/{todo_id}")
     public ResponseEntity<?> removeId(@PathVariable int todo_id) {
-//        return ResponseEntity.ok().body(todoService.removeTodo());
+        return ResponseEntity.ok().body(todoService.removeTodo(todo_id));
     }
 
 

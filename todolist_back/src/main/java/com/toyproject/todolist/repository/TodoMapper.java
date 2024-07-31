@@ -8,12 +8,20 @@ import java.util.List;
 
 @Mapper
 public interface TodoMapper {
-    int save(Todo todo) ;
+    int save(Todo todo);
 
     List<Todo> getListAll(int userId);
-
 
     int update(Todo todo);
 
     int delete(int todoId);
+
+    //로그인 구현 후 사용 될 메소드(테스트X)
+    List<Todo> getList(int userId, String date_id);
+
+    int add(Todo todo);
+
+    int edit(Todo todo);
+
+    int editChk(Todo todo);
 }
