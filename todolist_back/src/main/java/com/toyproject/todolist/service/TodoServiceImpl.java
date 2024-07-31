@@ -21,6 +21,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public int addTodo(TodoDto.ReqDto dto) {
+        System.out.println(dto);
         return todoMapper.save(dto.toEntity());
     }
 

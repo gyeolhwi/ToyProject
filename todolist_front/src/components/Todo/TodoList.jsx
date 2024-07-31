@@ -9,14 +9,23 @@ import api from '../../apis/instance';
 
 
 function TodoList(props) {
-    const addInput = useInput();
-    const [text, setText] = useState("");
+    const addInput = useInput("");
+    const [text, setText] = useState({
+        todoText: ""
+    });
     // 객체 들어올거임
     const [todo, setTodo] = useRecoilState(todoAtom);
-    const [dateYear, setgetDateYear] = useRecoilState(getDate);
+    const [today, setToDay] = useRecoilState(getDate);
 
     const handleOnchange = (e) => {
-        setText(e.target.value);
+        setText(text => {
+            return {
+                ...text,
+                [e.target.name]: e.target.value
+            }
+
+        })
+
     }
 
     // 처음에 조회 , 추가,수정,날짜변경시에 일어나야함
@@ -51,6 +60,19 @@ function TodoList(props) {
         return result;
     }
 
+    const addText = async () => {
+        let result = null;
+        try {
+            const rs = await api.post("todo/add", text);
+            getRender();
+
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+
+
 
     const navigator = useNavigate();
 
@@ -61,11 +83,19 @@ function TodoList(props) {
     const handleKeydown = (e) => {
         if (e.keyCode === 13) {
             console.log(todo);
+            addText();
+            console.log(today);
         }
     }
-
-
-
+    // 캘린더 클릭
+    const handleDateOnChange = (e) => {
+        setToDay(today => {
+            return {
+                ...today,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
 
 
     return (
@@ -78,7 +108,7 @@ function TodoList(props) {
                     <button name='/login' onClick={handleLoginClick}>로그인</button>
                     <button name='/register' onClick={handleLoginClick}> 회원가입</button>
                 </div>
-                <input css={s.time} type='month' name='time' />
+                <input css={s.time} type='month' name='today' value={today.today} onChange={handleDateOnChange} />
             </header>
             <div>
                 <div css={s.container}>
@@ -90,47 +120,67 @@ function TodoList(props) {
 
                             <label htmlFor="ck1" css={s.ckLabel} />
                             {/* input 빼고 이모티콘 추가 */}
-                            <input type='text' placeholder='내용을 입력하세요' name='textinput' onChange={handleOnchange} onKeyDown={handleKeydown} value={text} />
+                            <input type='text' placeholder='내용을 입력하세요' name='todoText' onChange={handleOnchange} onKeyDown={handleKeydown} value={text.todoText} />
                             <button >확인</button>
                         </div>
                         {/* section은 스크롤용 */}
                         <div css={s.section}>
-                                {todo.map(todo=>(
-                                    <div css={s.successDataContainer} key={todo.id}>
-                                <ul>
-                                    <li css={s.chkBox}>
-                                        <input type="checkbox" id='chk' />
-                                        <label htmlFor="chk" ></label>
-                                    </li>
-                                    <li>{todo.text}</li>
-                                    <li>
-                                        <button>&nbsp;수정&nbsp;</button>
-                                        <button>&nbsp;삭제&nbsp;</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        ))}
+                            {todo.map(todo => (
+                                <div css={s.successDataContainer} key={todo.todoId}>
+                                    <ul>
+                                        <li css={s.chkBox}>
+                                            <input type="checkbox" id='chk' checked={todo.todoChkId === 0 ? false : true} />
+                                            <label htmlFor="chk" ></label>
+                                        </li>
+                                        <li>{todo.todoText}</li>
+                                        <li>
+                                            <button>&nbsp;수정&nbsp;</button>
+                                            <button>&nbsp;삭제&nbsp;</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            ))}
 
                         </div>
                     </div>
                     <div css={s.dataContainer}>
                         <h2>미완료</h2>
                         <div css={s.section}>
-                            {/* 추가한 부분 */}
-                            <div css={s.successDataContainer}>
-                                <ul>
-                                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</li>
-                                    <li><button>&nbsp;수정&nbsp;</button></li>
-                                    <li><button>&nbsp;삭제&nbsp;</button></li>
-                                </ul>
-                            </div>
-                            {/*  */}
+                            {todo.filter((todo) => todo.todoChkId === 0)
+                                .map((todo) => (
+                                    <div css={s.successDataContainer}>
+                                        <ul>
+                                            <li css={s.chkBox}>
+                                                <input type="checkbox" id='chk' checked={todo.todoChkId === 0 ? false : true} />
+                                                <label htmlFor="chk" ></label>
+                                            </li>
+                                            <li>{todo.todoText}</li>
+                                            <li><button>&nbsp;수정&nbsp;</button></li>
+                                            <li><button>&nbsp;삭제&nbsp;</button></li>
+                                        </ul>
+                                    </div>
+                                ))}
 
                         </div>
                     </div>
                     <div css={s.dataContainer}>
                         <h2>완료</h2>
                         <div css={s.section}>
+                            {todo.filter((todo) => todo.todoChkId === 1)
+                                .map((todo) => (
+                                    <div css={s.successDataContainer}>
+                                        <ul>
+                                            <li css={s.chkBox}>
+                                                <input type="checkbox" id='chk' checked={todo.todoChkId === 0 ? false : true} />
+                                                <label htmlFor="chk" ></label>
+                                            </li>
+                                            <li>{todo.todoText}</li>
+                                            <li><button>&nbsp;수정&nbsp;</button></li>
+                                            <li><button>&nbsp;삭제&nbsp;</button></li>
+                                        </ul>
+                                    </div>
+                                ))}
+
                         </div>
                     </div>
                 </div>
