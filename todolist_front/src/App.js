@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import MainContainer from './components/MainContainer/MainContainer';
 import LoginPage from './pages/LoginPage';
 import Pencil from './components/Pencil/Pencil';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TodoList/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/register" element={<RegisterPage/>} />
         </Routes>
       </MainContainer>
       <Pencil />
