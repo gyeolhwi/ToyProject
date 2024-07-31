@@ -1,33 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import * as s from './style';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { getDate, todoAtom } from '../../atoms/atom';
 import useInput from '../../hooks/useInput';
+import * as s from './style';
+import axios from 'axios';
+import api from '../../apis/instance';
 
 
 function TodoList(props) {
     const addInput = useInput();
+    const [text,setText] = useState("");
+    // 객체 들어올거임
+    const [todo,setTodo] = useRecoilState(todoAtom);
+    const [dateYear,setgetDateYear] = useRecoilState(getDate);
+
+    const handleOnchange = (e)=>{
+        setText(e.target.value);
+    }
+
+    // 처음에 조회 , 추가,수정,날짜변경시에 일어나야함
+    useEffect(()=>{
+        const list = getRender();
+        setTodo(list);
+    },[]);
+
+    const getRender = async () =>{
+        let result = null;
+        try {
+            const rs = await axios.get(api.put("todoes"))
+            result = rs.data;
+        } catch (e) {
+            console.error(e);
+        }
+        return result;
+    }
+    
 
     const navigator = useNavigate();
-
-    const [todo, setTodo] = useState();
 
     const handleLoginClick = (e) => {
         navigator(e.target.name);
     }
 
-    const handleAddClick = () => { }
-
     const handleKeydown = (e) => {
         if (e.keyCode === 13) {
             console.log(addInput.textInput);
+            console.log(todo);
+            console.log(dateYear.toDay);
         }
     }
 
 
-    const handleCompleteCheck = () => { }
 
-    const handleTodoAddClick = () => { }
+
 
     return (
         <div css={s.layout}>
@@ -36,7 +63,7 @@ function TodoList(props) {
                     <h1>TodoList</h1>
                 </div>
                 <div css={s.login}>
-                    <button  name='/login' onClick={handleLoginClick}>로그인</button>
+                    <button name='/login' onClick={handleLoginClick}>로그인</button>
                     <button name='/register' onClick={handleLoginClick}> 회원가입</button>
                 </div>
                 <input css={s.time} type='month' name='time' />
@@ -46,114 +73,152 @@ function TodoList(props) {
                     {/* 전체의 dataContainer는 아래에dataContainer와 다른 css사용하세요 */}
                     <div css={s.dataContainer}>
                         <h2>전체</h2>
-                            {/*새로운 Todo 등록 */}
-                            <div css={s.content}>
+                        {/*새로운 Todo 등록 */}
+                        <div css={s.content}>
 
-                                <label htmlFor="ck1" css={s.ckLabel} />
-                                {/* input 빼고 이모티콘 추가 */}
-                                <input type='text' placeholder='내용을 입력하세요' name='textinput' onChange={addInput.onchange} onKeyDown={handleKeydown} value={addInput.textInput} />
-                                <button >확인</button>
-                            </div>
+                            <label htmlFor="ck1" css={s.ckLabel} />
+                            {/* input 빼고 이모티콘 추가 */}
+                            <input type='text' placeholder='내용을 입력하세요' name='textinput' onChange={handleOnchange} onKeyDown={handleKeydown} value={text} />
+                            <button >확인</button>
+                        </div>
                         {/* section은 스크롤용 */}
                         <div css={s.section}>
                             {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' />
+                                        <label htmlFor="chk" ></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
+                                    </li>
+                                </ul>
+                            </div>  <div css={s.successDataContainer}>
+                                <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
+                                    <li>글자수</li>
+                                    <li>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
-                            {/*  */}
-                            {/* 추가한 부분 */}
                             <div css={s.successDataContainer}>
                                 <ul>
+                                    <li css={s.chkBox}>
+                                        <input type="checkbox" id='chk' style={{ display: 'none' }} />
+                                        <label htmlFor="chk"></label>
+                                    </li>
                                     <li>글자수</li>
                                     <li>
-                                    <button>&nbsp;수정&nbsp;</button>
-                                    <button>&nbsp;삭제&nbsp;</button>
+                                        <button>&nbsp;수정&nbsp;</button>
+                                        <button>&nbsp;삭제&nbsp;</button>
                                     </li>
                                 </ul>
                             </div>
+
+
+
+                            {/*  */}
+                            {/* 추가한 부분 */}
+
                             {/*  */}
                         </div>
                     </div>
@@ -169,6 +234,7 @@ function TodoList(props) {
                                 </ul>
                             </div>
                             {/*  */}
+
                         </div>
                     </div>
                     <div css={s.dataContainer}>
