@@ -27,7 +27,7 @@ public class ApiController {
 
 
     @DeleteMapping("/todo/dd")
-    public ResponseEntity<?> removeId( int todo_id) {
+    public ResponseEntity<?> removeId(int todo_id) {
         return ResponseEntity.ok().body(todoService.removeTodo(todo_id));
     }
 
