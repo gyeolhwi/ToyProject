@@ -5,9 +5,10 @@
 <mapper namespace="com.toyproject.todolist.repository.TodoMapper">
 
     <insert id="save" parameterType="com.toyproject.todolist.entity.Todo">
-        insert into todo_tb
+        insert into
+        todo_tb
         values
-            (0, #{todo_text}, #{todo_chk_id}, #{todo_date})
+            (0, 1, #{todo_text}, 0, now())
     </insert>
 
 
@@ -38,9 +39,11 @@
             tt.todo_chk_id
         from
             todo_tb tt
-        left outer join user_tb ut on (tt.todo_user_id = ut.user_id)
+            left outer join user_tb ut on (tt.todo_user_id = ut.user_id)
         where
             ut.user_id = #{userId}
+        order by
+             tt.todo_id asc
     </select>
 <!-- 로그인 후 구현-->
     <select id="getList" resultType="com.toyproject.todolist.entity.Todo">
@@ -61,6 +64,8 @@
             *
         from
             todo_tb
+        order by
+            todo_id desc
     </select>
 
     <insert id="add">

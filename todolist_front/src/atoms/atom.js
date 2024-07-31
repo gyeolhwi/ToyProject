@@ -3,7 +3,8 @@ import { atom } from "recoil";
 
 const date = new Date();
 const year = date.getFullYear();
-const month = date.getMonth();
+const month = date.getMonth()+1;
+const toDay = year + "-" + (month > 9 ? "" : "0") + month;
 
 export const todoAtom = atom({
     key: "todo",
@@ -19,6 +20,6 @@ export const todoAtom = atom({
 export const getDate = atom({
     key:"getDate",
     default: {
-        toDay : year + "-" + month
+        today : toDay
     }
 })
