@@ -24,6 +24,7 @@ function App() {
           <Route path="/todo" element={<TodoList/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/>} />
+          <Route path="/test" element={<RegisterPage/>} />
         </Routes>
       </MainContainer>
       {
