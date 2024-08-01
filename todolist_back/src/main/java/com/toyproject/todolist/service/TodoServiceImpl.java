@@ -60,8 +60,8 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = Todo.builder()
                 .todo_id(reqDto.getTodoId())
                 .todo_text(reqDto.getTodoText())
-                .todo_chk_id(reqDto.getTodoChkId())
-                .todo_date(reqDto.getTodoDate())
+//                .todo_chk_id(reqDto.getTodoChkId())
+//                .todo_date(reqDto.getTodoDate())
                 .build();
 
         return todoMapper.update(todo);
