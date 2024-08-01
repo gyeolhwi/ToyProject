@@ -17,7 +17,7 @@ public interface TodoService {
      int removeTodo(int todo_id);
 
      // 전체 조회
-     List<RespListTodoesDto> getListTodoes();
+     List<RespListTodoesDto> getAllTodoList();
 
      // update 수정(id,수정 할 text)
      int updateTodo(ReqUpdateTodoDto reqDto);

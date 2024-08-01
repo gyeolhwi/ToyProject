@@ -14,12 +14,14 @@ function LoginPage(props) {
                 <div css={s.container}>
                     <div css={s.box}>
                     <form css={s.login}>
-                            <label>
-                                <input type="text" name="id" placeholder='이름 : ' />
-                            </label>
-                            <label>
-                                <input type="password" name="password" placeholder='암호 : ' />
-                            </label>
+                            <div css={s.names}>
+                                <span>이름</span>
+                                <input type="text" name="id"  />
+                            </div>
+                            <div css={s.names}>
+                                <span>암호</span>
+                                <input type="password" name="password" />
+                            </div>
                             <button type='submit' value="Submit">로그인</button>
                     </form>
                     </div>

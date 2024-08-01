@@ -16,7 +16,7 @@ public interface TodoMapper {
     int delete(int todoId);
 
     // 전체 조회
-    List<Todo> getListTodoes();
+    List<Todo> getAllTodoList();
 
     //로그인 구현 후 사용 될 메소드(테스트X)
     List<Todo> getList(int userId, String date_id);
