@@ -25,11 +25,10 @@ public class ApiController {
         return ResponseEntity.ok().body(todoService.getListAll(userid));
     }
 
-
-    @DeleteMapping("/todo/dd")
-    public ResponseEntity<?> removeId(int todo_id) {
-        return ResponseEntity.ok().body(todoService.removeTodo(todo_id));
-    }
+//    @DeleteMapping("/todo/{id}")
+//    public ResponseEntity<?> removeId(@PathVariable int id) {
+//        return ResponseEntity.ok().body(todoService.removeTodo(id));
+//    }
 
     // 전체 조회
    @GetMapping("/todoes")

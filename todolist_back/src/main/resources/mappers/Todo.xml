@@ -15,10 +15,10 @@
     <update id="update">
         update todo_tb
         set
-            todo_text = #{todo_text},
-            todo_chk_id = #{todo_chk_id},
-            todo_date = #{todo_date}
-        from
+            todo_text = #{todo_text}
+<!--            todo_chk_id = #{todo_chk_id},-->
+<!--            todo_date = #{todo_date}-->
+        where
             todo_id = #{todo_id}
     </update>
 
@@ -45,6 +45,9 @@
         order by
              tt.todo_id asc
     </select>
+
+
+
 <!-- 로그인 후 구현-->
     <select id="getList" resultType="com.toyproject.todolist.entity.Todo">
         select
