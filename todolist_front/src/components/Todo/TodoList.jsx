@@ -16,6 +16,7 @@ function TodoList(props) {
     });
     // 객체 들어올거임
     const [todo, setTodo] = useRecoilState(todoAtom);
+    
     const [today, setToDay] = useRecoilState(getDate);
 
     const [editTodo, setEditTodo] = useState({
