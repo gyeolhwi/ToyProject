@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import Pencil from './components/Pencil/Pencil';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Mainpage from './pages/Mainpage/Mainpage';
+import ComputerPage from './components/Modal/ComputerPage';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
           <Route path="/todo" element={<TodoList/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<RegisterPage/>} />
-          <Route path="/test" element={<RegisterPage/>} />
+          <Route path="/test" element={<ComputerPage/>} />
         </Routes>
       </MainContainer>
       {
