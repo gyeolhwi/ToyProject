@@ -75,8 +75,7 @@ function TodoList(props) {
         let result = null;
         try {
             const rs = await api.post("todo/add", text);
-            getRender();
-
+            getRenderDate();
         } catch (e) {
             console.error(e);
         }
