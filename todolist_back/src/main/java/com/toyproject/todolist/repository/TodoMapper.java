@@ -15,7 +15,7 @@ public interface TodoMapper {
 
     int update(Todo todo);
 
-    int updateChk(int todo_chk_id);
+    int updateChk(Todo todo);
 
     int delete(int todoId);
 

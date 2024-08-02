@@ -8,8 +8,10 @@ import com.toyproject.todolist.repository.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TooManyListenersException;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,9 +64,13 @@ public class TodoServiceImpl implements TodoService {
 
     // 체크 시에 업데이트 요청
     @Override
-    public int updateChk(int todo_chk_id) {
-        todoMapper.
-        return ;
+    public int updateChk(ReqUpdateTodoDto reqDto) {
+        Todo todo = Todo.builder()
+                .todo_id(reqDto.getTodoId())
+                .todo_chk_id(reqDto.getTodoChkId())
+                .build();
+
+        return todoMapper.updateChk(todo);
     }
 
     @Override

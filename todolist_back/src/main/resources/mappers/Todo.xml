@@ -105,8 +105,7 @@
         set
             todo_chk_id = #{todo_chk_id}
         where
-
-
+             todo_id = #{todo_id}
     </update>
 
 </mapper>
