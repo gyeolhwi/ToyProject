@@ -7,6 +7,7 @@ import api from '../../apis/instance';
 import { getDate, todoAtom } from '../../atoms/atom';
 import useInput from '../../hooks/useInput';
 import * as s from './style';
+import Modal from '../Modal/Modal';
 
 
 function TodoList(props) {
@@ -193,42 +194,7 @@ function TodoList(props) {
 
     return (
         <div css={s.layout}>
-
-            <ReactModal style={{
-                content: {
-                    boxSizing: 'border-box',
-                    // margin: '0px auto',
-                    // transform: 'translateY(50%)',
-
-                    transform: 'translate(-50%,-50%)',
-                    top: '50%',
-                    left: '50%',
-
-                    padding: '20px',
-                    width: '400px',
-                    height: '400px',
-                    backgroundColor: '#fafafafa',
-                }
-            }}
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-            >
-                <div>
-                    <div>
-                        <h2>내용수정</h2>
-                        <div>
-                            <input type="text" name='todoText' value={editTodo.todoText} onChange={handleEditOnChange} onKeyDown={(e) => e.key === 'Enter' ? handleEditSubmit() : 'return'} />
-
-                            <div>
-                                <button onClick={handleEditSubmit}>확인</button>
-                                <button onClick={closeModal}>취소</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </ReactModal>
-
+            <Modal isModalOpen ={isModalOpen} setModalOpen={setModalOpen}/>
             <header>
                 <div css={s.title}>
                     <h1>TodoList</h1>
