@@ -48,6 +48,23 @@ public class TodoServiceImpl implements TodoService {
         }
         return respList;
     }
+    //날짜조회
+    @Override
+    public List<RespTodoListDto> getAllTodoList(String month) {
+        List<Todo> todoList = todoMapper.getAllTodoList(month);
+        List<RespTodoListDto> respList = new ArrayList<>();
+
+        for(Todo todo : todoList) {
+            RespTodoListDto dto = RespTodoListDto.builder()
+                    .todoId(todo.getTodo_id())
+                    .todoText(todo.getTodo_text())
+                    .todoChkId(todo.getTodo_chk_id())
+                    .todoDate(todo.getTodo_date())
+                    .build();
+            respList.add(dto);
+        }
+        return respList;
+    }
 
     // 해당날짜에 해당하는 모든 것 들고오기
     @Override

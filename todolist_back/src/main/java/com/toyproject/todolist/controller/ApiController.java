@@ -34,8 +34,9 @@ public class ApiController {
 
     // 전체 조회
    @GetMapping("/todolist")
-   public ResponseEntity<?> getList() {
-        return ResponseEntity.ok().body(todoService.getAllTodoList());
+   public ResponseEntity<?> getList(@RequestParam (required = false) String month) {
+       log.info("{}", month);
+        return ResponseEntity.ok().body(todoService.getAllTodoList(month));
    }
 
    // 해당날짜에 해당하는 모든 것 들고오기
@@ -51,8 +52,9 @@ public class ApiController {
     }
 
     // 체크 시에 업데이트 요청
-    @PutMapping("/todo/chkupdate")
-    public ResponseEntity<?> updateChkId(@RequestBody ReqUpdateTodoDto reqUpdate) {
+    @PutMapping("/todo/chkupdate/{todoId}")
+    public ResponseEntity<?> updateChkId(@PathVariable int todoId, @RequestBody ReqUpdateTodoDto reqUpdate) {
+        log.info("{}", reqUpdate);
         return ResponseEntity.ok().body(todoService.updateChk(reqUpdate));
     }
 

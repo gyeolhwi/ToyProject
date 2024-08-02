@@ -14,6 +14,8 @@ public interface TodoMapper {
 
     List<Todo> getAllTodoList();
 
+    List<Todo> getAllTodoList(String month);
+
     // 해당날짜에 해당하는 모든 것 들고오기
     List<Todo> getDateList(String today);
 

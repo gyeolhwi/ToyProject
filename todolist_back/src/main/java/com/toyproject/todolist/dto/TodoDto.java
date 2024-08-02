@@ -22,6 +22,7 @@ public class TodoDto {
             return Todo.builder()
                     .todo_id(todoId)
                     .todo_text(todoText)
+                    .todo_date(todoDate)
                     .build();
         }
     }

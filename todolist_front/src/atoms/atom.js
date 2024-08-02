@@ -14,12 +14,12 @@ export const todoAtom = atom({
         todoText:"",
         todoChkId:"",
         todoDate:""
-    }]
-})
+    }
+]})
 
 export const getDate = atom({
     key:"getDate",
     default: {
-        today : toDay
+        todoDate : toDay
     }
 })

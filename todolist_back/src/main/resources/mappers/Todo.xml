@@ -31,10 +31,13 @@
             *
         from
             todo_tb
+        where
+            todo_date LIKE concat("%", #{month}, "%")
         order by
             todo_id desc
 
     </select>
+
 
     <update id="update">
         update todo_tb
