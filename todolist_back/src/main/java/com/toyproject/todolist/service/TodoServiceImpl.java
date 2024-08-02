@@ -1,11 +1,10 @@
 package com.toyproject.todolist.service;
 
 import com.toyproject.todolist.dto.ReqUpdateTodoDto;
-import com.toyproject.todolist.dto.RespListTodoesDto;
+import com.toyproject.todolist.dto.RespTodoListDto;
 import com.toyproject.todolist.dto.TodoDto;
 import com.toyproject.todolist.entity.Todo;
 import com.toyproject.todolist.repository.TodoMapper;
-import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,20 +29,14 @@ public class TodoServiceImpl implements TodoService {
         return todoMapper.getListAll(userid).stream().map(Todo::toDto).collect(Collectors.toList());
     }
 
-    // 삭제
-    @Override
-    public int removeTodo(int todo_id) {
-        return 0;
-    }
-
     // 전체 조회
     @Override
-    public List<RespListTodoesDto> getAllTodoList() {
+    public List<RespTodoListDto> getAllTodoList() {
         List<Todo> todoList = todoMapper.getAllTodoList();
 
-        List<RespListTodoesDto> respList = new ArrayList<>();
+        List<RespTodoListDto> respList = new ArrayList<>();
         for(Todo todo : todoList) {
-            RespListTodoesDto respListDto = RespListTodoesDto.builder()
+            RespTodoListDto respListDto = RespTodoListDto.builder()
                     .todoId(todo.getTodo_id())
                     .todoText(todo.getTodo_text())
                     .todoChkId(todo.getTodo_chk_id())

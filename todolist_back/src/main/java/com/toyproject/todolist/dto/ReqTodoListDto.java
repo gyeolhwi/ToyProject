@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class RespListTodoesDto {
+public class ReqTodoListDto {
     private int todoId;
     private String todoText;
     private int todoChkId;
