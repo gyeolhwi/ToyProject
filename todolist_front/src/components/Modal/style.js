@@ -41,23 +41,31 @@ export const container =css`
         border-top: 3px solid black;
         border-left: none;
         border-right: none;
+        font-family: "Nanumpen";
+        font-size: 25px;
+        font-weight: bold;
         border-bottom: 3px solid black;
         width: 380px;
-        height: 300px;
-        background-color: transparent;
+        height: 200px;
+        background: none;
         cursor: text;
-        }
+    }
     `;
         
 export const button =css`
-    width: 140px;
-    border-top: 1px solid red;
-    border-bottom: 1px solid red;
-    border-right: 1px solid red;
-    button {
-        font-family: "NanumBarunpenB";
-        font-size: 15px;
-        border-left: 1px solid red;
-        width: 70px;
+    button{    
+    font-family: "Nanumpen";
+    font-size: 20px;
+    font-weight: bold;
+    width: 190px;
+    border: none;
+    border-bottom: 3px solid black;
+    background: transparent;
+    &:hover{
+        color: #9e0000;
+    }
+    &:active{
+        color: #ff0000;
+    }
     }
  `;
