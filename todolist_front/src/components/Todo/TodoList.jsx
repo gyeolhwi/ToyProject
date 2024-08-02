@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import ReactModal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
@@ -26,6 +26,8 @@ function TodoList(props) {
     });
 
     const [isModalOpen, setModalOpen] = useState(false);
+    const [editMode , setEditMode] = useState(false);
+
 
 
     const handleOnchange = (e) => {
@@ -52,13 +54,13 @@ function TodoList(props) {
             const rs = await api.get("/todolist");
             result = rs.data;
             setTodo(result);
-            console.log(rs.data);
+            // console.log(rs.data);
         } catch (e) {
             console.error(e);
         }
         return result;
     }
-    
+
     const getRenderDate = async () => {
         let result = null;
         try {
@@ -94,7 +96,9 @@ function TodoList(props) {
         }
     }
     const heart = async (id) => {
-        api.put("/todo/chkupdate",editTodo);
+        const { todoDate, todoText, ...rest } = todo[id];
+        console.log(rest);
+        api.put("/todo/chkupdate", rest);
         getRender();
     }
 
@@ -129,10 +133,10 @@ function TodoList(props) {
         // 레스트문법 사용으로 id,text만 객체?로 묶여나옴
         const { checkedId, todoDate, ...rest } = todo.filter(t => t.todoId === parseInt(e.target.value))[0];
         setEditTodo(rest);
-        console.log("rest" + rest);
-        console.log("chkid" + checkedId);
+        // console.log("rest" + rest);
+        // console.log("chkid" + checkedId);
 
-        console.log(e.target.value);
+        // console.log(e.target.value);
     }
 
     const handleRemoveClick = (e) => {
@@ -144,12 +148,11 @@ function TodoList(props) {
     }
 
     useEffect(() => {
-        console.log(todo);
-    }, [todo])
+        
+    }, [editMode])
 
-    const handleHeartClick = (id) => {
-
-        setTodo(todo => {
+    const handleHeartClick = async (id) => {
+         setTodo(todo => {
             return todo.map(t => t.todoId === id
                 ? {
                     ...t,
@@ -157,6 +160,8 @@ function TodoList(props) {
                 } : t
             )
         })
+
+        heart(id);
     }
     return (
         <div css={s.layout}>
@@ -186,12 +191,12 @@ function TodoList(props) {
                         </div>
                         {/* section은 스크롤용 */}
                         <div css={s.section}>
-                            {todo.map((todo) => (
+                            {todo.map((todo,idx) => (
                                 <div css={s.successDataContainer} key={todo.todoId}>
                                     <ul>
                                         <li css={s.chkBox}>
                                             <input type="checkbox" id='chk' checked={todo.todoChkId === 1} />
-                                            <label htmlFor="chk" onClick={() => handleHeartClick(todo.todoId)} ></label>
+                                            <label htmlFor="chk" onClick={() => handleHeartClick(idx)} ></label>
                                         </li>
                                         <li>{todo.todoText}</li>
                                         <li>
