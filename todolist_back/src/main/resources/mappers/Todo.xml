@@ -98,4 +98,15 @@
             todo_id = #{todo_id}
     </update>
 
+<!-- 체크 시에 업데이트 요청  -->
+    <update id="updateChk">
+        update
+            todo_tb
+        set
+            todo_chk_id = #{todo_chk_id}
+        where
+
+
+    </update>
+
 </mapper>

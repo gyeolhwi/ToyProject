@@ -60,6 +60,13 @@ public class TodoServiceImpl implements TodoService {
         return todoMapper.update(todo);
     }
 
+    // 체크 시에 업데이트 요청
+    @Override
+    public int updateChk(int todo_chk_id) {
+        todoMapper.
+        return ;
+    }
+
     @Override
     public int deleteTodo(int todoId) {
         return todoMapper.delete(todoId);

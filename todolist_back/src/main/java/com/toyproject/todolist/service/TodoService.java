@@ -19,6 +19,9 @@ public interface TodoService {
      // update 수정(id,수정 할 text)
      int updateTodo(ReqUpdateTodoDto reqDto);
 
+     // 체크 시에 업데이트 요청
+     int updateChk(int todo_chk_id);
+
      // delete 삭제(todo_id)
      int deleteTodo(int todo_id);
 
