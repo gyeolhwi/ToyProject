@@ -8,13 +8,10 @@ import api from '../../apis/instance';
 ReactModal.setAppElement("#root");
 
 
-function Modal({ isModalOpen, setModalOpen }) {
+function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo }) {
     // const [isModalOpen, setModalOpen] = useState(false);
     const [todo, setTodo] = useRecoilState(todoAtom);
-    const [editTodo, setEditTodo] = useState({
-        todoId: "",
-        todoText: ""
-    });
+
 
     const handleEditOnChange = (e) => {
         setEditTodo(todo => {
@@ -25,9 +22,6 @@ function Modal({ isModalOpen, setModalOpen }) {
         })
         console.log(editTodo);
     }
-
-
-
 
     const handleEditSubmit = () => {
         edit();
@@ -53,7 +47,7 @@ function Modal({ isModalOpen, setModalOpen }) {
     const getRender = async () => {
         let result = null;
         try {
-            const rs = await api.get("todoes");
+            const rs = await api.get("/todolist");
             result = rs.data;
             setTodo(result);
             console.log(rs.data);
