@@ -71,7 +71,15 @@
             todo_user_id = #{todo_user_id}
         and #{date} between DATE_ADD(NOW(), INTERVAL -1 MONTH ) AND NOW();
     </select>
-
+<!-- 해당날짜에 해당하는 모든 것 들고오기 -->
+    <select id="getDateList" resultType="com.toyproject.todolist.entity.Todo">
+        select
+            *
+        from
+            todo_tb
+        where
+            todo_date = #{today}
+    </select>
 
     <insert id="add">
         insert into

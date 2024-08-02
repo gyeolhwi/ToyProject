@@ -38,6 +38,12 @@ public class ApiController {
         return ResponseEntity.ok().body(todoService.getAllTodoList());
    }
 
+   // 해당날짜에 해당하는 모든 것 들고오기
+    @GetMapping("/todo/{today}")
+    public ResponseEntity<?> getDateList(@PathVariable String today) {
+        return ResponseEntity.ok().body(todoService.getDateList(today));
+    }
+
     //해당 id 찾아서 수정
     @PutMapping("/todo/edit")
     public ResponseEntity<?> editTodo(@RequestBody ReqUpdateTodoDto reqDto) {
@@ -45,7 +51,6 @@ public class ApiController {
     }
 
     // 체크 시에 업데이트 요청
-
     @PutMapping("/todo/chkupdate")
     public ResponseEntity<?> updateChkId(@RequestBody ReqUpdateTodoDto reqUpdate) {
         return ResponseEntity.ok().body(todoService.updateChk(reqUpdate));
@@ -56,6 +61,4 @@ public class ApiController {
     public ResponseEntity<?> deleteTodo(@PathVariable int todo_id) {
         return ResponseEntity.ok().body(todoService.deleteTodo(todo_id));
     }
-
-
 }
