@@ -16,6 +16,9 @@ public interface TodoService {
      // 전체 조회
      List<RespTodoListDto> getAllTodoList();
 
+     // 해당날짜에 해당하는 모든 것 들고오기
+     List<RespTodoListDto> getDateList(String today);
+
      // update 수정(id,수정 할 text)
      int updateTodo(ReqUpdateTodoDto reqDto);
 
