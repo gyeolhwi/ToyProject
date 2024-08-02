@@ -70,7 +70,7 @@ function TodoList(props) {
     const getRender = async () => {
         let result = null;
         try {
-            const rs = await api.get("todoes");
+            const rs = await api.get("todolist");
             result = rs.data;
             setTodo(result);
             console.log(rs.data);

@@ -2,6 +2,7 @@ package com.toyproject.todolist.controller;
 
 
 import com.toyproject.todolist.dto.ReqUpdateTodoDto;
+import com.toyproject.todolist.dto.RespTodoListDto;
 import com.toyproject.todolist.dto.TodoDto;
 import com.toyproject.todolist.service.TodoService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ public class ApiController {
     }
 
     // 전체 조회
-   @GetMapping("/todoList")
+   @GetMapping("/todolist")
    public ResponseEntity<?> getList() {
         return ResponseEntity.ok().body(todoService.getAllTodoList());
    }
@@ -43,9 +44,17 @@ public class ApiController {
         return ResponseEntity.ok().body(todoService.updateTodo(reqDto));
     }
 
+    // 체크 시에 업데이트 요청
+    @PutMapping("/todo/{todo_chk_id}")
+    public ResponseEntity<?> updateChkId(@RequestBody int todo_chk_id) {
+        return ResponseEntity.ok().body(todoService.updateChk());
+    }
+
     //해당 id 찾아서 삭제
     @DeleteMapping("/todo/{todo_id}")
     public ResponseEntity<?> deleteTodo(@PathVariable int todo_id) {
         return ResponseEntity.ok().body(todoService.deleteTodo(todo_id));
     }
+
+
 }
