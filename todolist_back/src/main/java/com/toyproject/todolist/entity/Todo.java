@@ -17,7 +17,7 @@ public class Todo {
     private int todo_id;
     private String todo_text;
     private int todo_chk_id;
-    private LocalDate todo_date;
+    private String todo_date;
     
     // 로그인 후 사용 될 Dto ( 테스트 안함)
     private int todo_user_id;
