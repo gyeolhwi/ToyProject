@@ -49,6 +49,7 @@ public class ApiController {
     @PutMapping("/todo/chkupdate")
     public ResponseEntity<?> updateChkId(@RequestBody ReqUpdateTodoDto reqUpdate) {
         return ResponseEntity.ok().body(todoService.updateChk(reqUpdate));
+    }
 
     //해당 id 찾아서 삭제
     @DeleteMapping("/todo/{todo_id}")

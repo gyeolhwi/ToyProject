@@ -8,7 +8,7 @@
         insert into
         todo_tb
         values
-            (0, 1, #{todo_text}, 0, now())
+            (0, 1, #{todo_text}, 0, #{todo_date})
     </insert>
 
     <select id="getListAll" resultType="com.toyproject.todolist.entity.Todo">
