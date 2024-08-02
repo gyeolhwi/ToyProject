@@ -19,28 +19,23 @@ public class ApiController {
     @Autowired
     private TodoService todoService;
 
+    @PostMapping("/todo/add")
+    public ResponseEntity<?> addTodo(@RequestBody TodoDto.ReqDto dto) {
+        log.info("dto : {}", dto);
+        return ResponseEntity.ok().body(todoService.addTodo(dto));
+    }
+
     // 해당id 찾아서 list조회
     @GetMapping("/todo/{userid}")
     public ResponseEntity<?> getId(@PathVariable int userid) {
         return ResponseEntity.ok().body(todoService.getListAll(userid));
     }
 
-//    @DeleteMapping("/todo/{id}")
-//    public ResponseEntity<?> removeId(@PathVariable int id) {
-//        return ResponseEntity.ok().body(todoService.removeTodo(id));
-//    }
-
     // 전체 조회
-   @GetMapping("/todoes")
+   @GetMapping("/todoList")
    public ResponseEntity<?> getList() {
         return ResponseEntity.ok().body(todoService.getAllTodoList());
    }
-
-    @PostMapping("/todo/add")
-    public ResponseEntity<?> addTodo(@RequestBody TodoDto.ReqDto dto) {
-        log.info("dto : {}", dto);
-        return ResponseEntity.ok().body(todoService.addTodo(dto));
-    }
 
     //해당 id 찾아서 수정
     @PutMapping("/todo/edit")

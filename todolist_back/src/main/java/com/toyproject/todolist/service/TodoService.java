@@ -1,7 +1,7 @@
 package com.toyproject.todolist.service;
 
 import com.toyproject.todolist.dto.ReqUpdateTodoDto;
-import com.toyproject.todolist.dto.RespListTodoesDto;
+import com.toyproject.todolist.dto.RespTodoListDto;
 import com.toyproject.todolist.dto.TodoDto;
 
 import java.util.List;
@@ -13,11 +13,8 @@ public interface TodoService {
      // select 리스트 유저의 text
      List<TodoDto.RespDto> getListAll(int userid);
 
-     // 삭제
-     int removeTodo(int todo_id);
-
      // 전체 조회
-     List<RespListTodoesDto> getAllTodoList();
+     List<RespTodoListDto> getAllTodoList();
 
      // update 수정(id,수정 할 text)
      int updateTodo(ReqUpdateTodoDto reqDto);
