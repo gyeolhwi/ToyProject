@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import ReactModal from 'react-modal';
 import * as s from './style';
 import { useRecoilState } from 'recoil';
-import { todoAtom } from '../../atoms/atom';
+import { getDate, todoAtom } from '../../atoms/atom';
 import api from '../../apis/instance';
 ReactModal.setAppElement("#root");
 
@@ -11,6 +11,7 @@ ReactModal.setAppElement("#root");
 function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
     // const [isModalOpen, setModalOpen] = useState(false);
     const [todo, setTodo] = useRecoilState(todoAtom);
+    const [today, setToDay] = useRecoilState(getDate);
 
     const handleEditOnChange = (e) => {
         setEditTodo(todo => {
@@ -24,8 +25,10 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
 
     const handleEditSubmit = () => {
         edit();
-        getRender();
+        // getRender();
+        getRenderDate();
     }
+
     const closeModal = () => {
         setModalOpen(false);
     }
@@ -37,7 +40,7 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
             api.put("/todo/edit", editTodo).then(response => {
                 console.log("성공");
                 closeModal();
-                getRender();
+                getRenderDate();
             });
         } catch (e) {
             console.error(e);
@@ -50,6 +53,21 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
             result = rs.data;
             setTodo(result);
             console.log(rs.data);
+        } catch (e) {
+            console.error(e);
+        }
+        return result;
+    }
+    const getRenderDate = async () => {
+        let result = null;
+        try {
+            const rs = await api.get(`/todolist`, {
+                params: {
+                    month: today.todoDate
+                }
+            });
+            result = rs.data;
+            setTodo(result);
         } catch (e) {
             console.error(e);
         }

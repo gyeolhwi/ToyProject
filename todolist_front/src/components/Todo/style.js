@@ -146,11 +146,9 @@ export const chkBox = css`
     label::after{
         content: "🤍";
     }
-
     input{
         display: none;
     }
-
     input:checked + label::after{
         content: "💗";
     }

@@ -15,6 +15,8 @@ public interface TodoService {
 
      // 전체 조회
      List<RespTodoListDto> getAllTodoList();
+     
+     List<RespTodoListDto> getAllTodoList(String month);
 
      // 해당날짜에 해당하는 모든 것 들고오기
      List<RespTodoListDto> getDateList(String today);
