@@ -20,7 +20,7 @@ public interface TodoService {
      int updateTodo(ReqUpdateTodoDto reqDto);
 
      // 체크 시에 업데이트 요청
-     int updateChk(int todo_chk_id);
+     int updateChk(ReqUpdateTodoDto reqUpdate);
 
      // delete 삭제(todo_id)
      int deleteTodo(int todo_id);
