@@ -18,6 +18,7 @@ export const title =css`
     background-color: white;
     margin-top: 20px;
     transform: translate(85%, 150%);
+    cursor: default;
     h1{
         display: flex;
         background-color: white;
