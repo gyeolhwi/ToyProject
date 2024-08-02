@@ -8,6 +8,7 @@ export const title =css`
     height: 65px;
     background-color: white;
     margin: 20px 0px 65px 0px;
+    cursor: default;
     h1{
         display: flex;
         background-color: white;
@@ -76,6 +77,14 @@ export const register =css`
             color: #9e0000;
         }
         &:active{
+            color: #ff0000;
+        }
+
+        a:hover{
+            color: #9e0000;
+        }
+
+        a:active{
             color: #ff0000;
         }
     }

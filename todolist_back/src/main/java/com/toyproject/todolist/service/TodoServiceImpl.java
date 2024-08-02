@@ -63,8 +63,7 @@ public class TodoServiceImpl implements TodoService {
     // 체크 시에 업데이트 요청
     @Override
     public int updateChk(int todo_chk_id) {
-        todoMapper.
-        return ;
+        return todoMapper.updateChk(todo_chk_id);
     }
 
     @Override

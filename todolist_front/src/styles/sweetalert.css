@@ -1,0 +1,41 @@
+
+
+.sweet-back-img {
+    height: 30em;
+    font-family: "Nanumpen";
+    font-size: 20px;
+    background-image: url('../assets/img/one.png');
+    background-size: cover; /* or contain */
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 150px;
+    cursor: default;
+
+
+.sweet-actions {
+    margin: 0;
+}
+
+.sweet-actions > button {
+    font-family: "Nanumpen";
+    font-size: 30px;
+    background: none;
+    border: none;
+    &:hover{
+        color: #9e0000;
+        background: none !important;
+    }
+    &:active{
+        color: #ff0000;
+        background: none !important;
+    }
+    &:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    margin-top: 0;
+    color: black;
+} 
+
+}

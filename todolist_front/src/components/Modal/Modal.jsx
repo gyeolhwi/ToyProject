@@ -68,9 +68,10 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo }) {
                         top: '50%',
                         left: '50%',
                         padding: '20px',
-                        width: '800px',
+                        width: '520px',
                         height: '600px',
-                        backgroundColor: '#fafafa',
+                        border: 'none' 
+                        //transparent
                     }
                 }}
                 isOpen={isModalOpen}
