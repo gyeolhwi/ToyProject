@@ -39,34 +39,12 @@ function TodoList(props) {
 
     }
 
-    const handleEditOnChange = (e) => {
-        setEditTodo(todo => {
-            return {
-                ...todo,
-                [e.target.name]: e.target.value
-            }
-        })
-        console.log(editTodo);
-    }
-
     // 처음에 조회 , 추가,수정,날짜변경시에 일어나야함
     useEffect(() => {
         let list = null;
         list = getRender();
         console.log(list);
     }, []);
-
-    // const render = async () => {
-    //     let list = null;
-    //     try {
-    //         const rs = await getRender();
-    //         list = rs.data;
-    //         setTodo(list);
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    //     return list;
-    // }
 
     const getRender = async () => {
         let result = null;
@@ -79,6 +57,17 @@ function TodoList(props) {
             console.error(e);
         }
         return result;
+    }
+    
+    const getRenderDate = async () => {
+        let result = null;
+        try {
+            const rs = api.get(`/date/${today}`);
+            result = rs.data;
+            setTodo(result);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     const addText = async () => {
@@ -95,18 +84,6 @@ function TodoList(props) {
         }
     }
 
-    const edit = async () => {
-        let result = null;
-        try {
-            api.put("/todo/edit", editTodo).then(response => {
-                console.log("성공");
-                closeModal();
-                getRender();
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    }
     const remove = async (id) => {
         let result = null;
         try {
@@ -117,11 +94,9 @@ function TodoList(props) {
         }
     }
     const heart = async (id) => {
-        api.put();
+        api.put("/todo/chkupdate",editTodo);
         getRender();
     }
-
-
 
     const navigator = useNavigate();
 
@@ -144,6 +119,7 @@ function TodoList(props) {
                 [e.target.name]: e.target.value
             }
         })
+        getRenderDate();
     }
     const handleSubmitClick = () => {
         addText();
@@ -182,18 +158,6 @@ function TodoList(props) {
             )
         })
     }
-
-
-    const closeModal = () => {
-        setModalOpen(false);
-    }
-
-    const handleEditSubmit = () => {
-        edit();
-        getRender();
-    }
-
-
     return (
         <div css={s.layout}>
             <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} editTodo={editTodo} setEditTodo={setEditTodo} />
@@ -222,7 +186,7 @@ function TodoList(props) {
                         </div>
                         {/* section은 스크롤용 */}
                         <div css={s.section}>
-                            {todo.map((todo, idx) => (
+                            {todo.map((todo) => (
                                 <div css={s.successDataContainer} key={todo.todoId}>
                                     <ul>
                                         <li css={s.chkBox}>
@@ -248,12 +212,14 @@ function TodoList(props) {
                                     <div css={s.successDataContainer} key={todo.todoId}>
                                         <ul>
                                             <li css={s.chkBox}>
-                                                <input type="checkbox" id='chk' checked={todo.todoChkId === 0 ? false : true} />
-                                                <label htmlFor="chk" ></label>
+                                                <input type="checkbox" id='chk' checked={todo.todoChkId === 1} />
+                                                <label htmlFor="chk" onClick={() => handleHeartClick(todo.todoId)} ></label>
                                             </li>
                                             <li>{todo.todoText}</li>
-                                            <li><button>&nbsp;수정&nbsp;</button></li>
-                                            <li><button>&nbsp;삭제&nbsp;</button></li>
+                                            <li>
+                                                <button onClick={handleEditClick} value={todo.todoId} >&nbsp;수정&nbsp;</button>
+                                                <button onClick={handleRemoveClick} value={todo.todoId}>&nbsp;삭제&nbsp;</button>
+                                            </li>
                                         </ul>
                                     </div>
                                 ))}
@@ -268,12 +234,14 @@ function TodoList(props) {
                                     <div css={s.successDataContainer}>
                                         <ul>
                                             <li css={s.chkBox}>
-                                                <input type="checkbox" id='chk' checked={todo.todoChkId === 0 ? false : true} />
-                                                <label htmlFor="chk" ></label>
+                                                <input type="checkbox" id='chk' checked={todo.todoChkId === 1} />
+                                                <label htmlFor="chk" onClick={() => handleHeartClick(todo.todoId)} ></label>
                                             </li>
                                             <li>{todo.todoText}</li>
-                                            <li><button>&nbsp;수정&nbsp;</button></li>
-                                            <li><button>&nbsp;삭제&nbsp;</button></li>
+                                            <li>
+                                                <button onClick={handleEditClick} value={todo.todoId} >&nbsp;수정&nbsp;</button>
+                                                <button onClick={handleRemoveClick} value={todo.todoId}>&nbsp;삭제&nbsp;</button>
+                                            </li>
                                         </ul>
                                     </div>
                                 ))}
