@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import ReactModal from 'react-modal';
 import * as s from './style';
@@ -8,10 +8,9 @@ import api from '../../apis/instance';
 ReactModal.setAppElement("#root");
 
 
-function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo }) {
+function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
     // const [isModalOpen, setModalOpen] = useState(false);
     const [todo, setTodo] = useRecoilState(todoAtom);
-
 
     const handleEditOnChange = (e) => {
         setEditTodo(todo => {
@@ -85,7 +84,7 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo }) {
                     </header>
 
                     <div css={s.container}>
-                        <input type="text" name='todoText' value={editTodo.todoText} onChange={handleEditOnChange} onKeyDown={(e) => e.key === 'Enter' ? handleEditSubmit() : 'return'} />
+                        <input type="text" name='todoText' value={editTodo.todoText} onChange={handleEditOnChange} onKeyDown={(e) => e.key === 'Enter' ? handleEditSubmit() : 'return'}  autoFocus />
                     </div>
                     <div css={s.button}>
                         <button onClick={handleEditSubmit}>확인</button>
