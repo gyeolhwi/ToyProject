@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const title =css`
+export const title = css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,6 +8,8 @@ export const title =css`
     height: 65px;
     background-color: white;
     margin: 20px 0px 65px 0px;
+    
+    cursor: default;
     h1{
         display: flex;
         background-color: white;
@@ -21,7 +23,7 @@ export const title =css`
     }
 `;
 
-export const ground =css`
+export const ground = css`
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -31,7 +33,7 @@ export const ground =css`
     height: 100%;
 `;
 
-export const container =css`
+export const container = css`
     display: flex;
     box-sizing: border-box;
     justify-content: space-between;
@@ -39,7 +41,7 @@ export const container =css`
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `;
 
-export const box =css`
+export const box = css`
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -52,7 +54,7 @@ export const box =css`
     border-radius: 5%;
 `;
 
-export const login =css`
+export const login = css`
     margin: 40px 0px 0px 10px;
     display: flex;
     flex-direction: column;
@@ -90,9 +92,17 @@ export const login =css`
         &:active{
             color: #ff0000;
         }
+        
+        a:hover{
+            color: #9e0000;
+        }
+
+        a:active{
+            color: #ff0000;
+        }
     }
 `
-export const names =css`
+export const names = css`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -119,5 +129,5 @@ export const names =css`
         background: transparent;
         }
     
-`; 
+`;
 ;
