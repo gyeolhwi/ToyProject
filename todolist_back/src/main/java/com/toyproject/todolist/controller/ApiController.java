@@ -32,14 +32,19 @@ public class ApiController {
         return ResponseEntity.ok().body(todoService.getListAll(userid));
     }
 
-    // 전체 조회
-   @GetMapping("/todolist")
-   public ResponseEntity<?> getList(@RequestParam (required = false) String month) {
-       log.info("{}", month);
-        return ResponseEntity.ok().body(todoService.getAllTodoList(month));
-   }
+    @GetMapping("/todolist/all")
+    public ResponseEntity<?> getAllTodos() {
+        return ResponseEntity.ok().body(todoService.getAllTodoList());
+    }
 
-   // 해당날짜에 해당하는 모든 것 들고오기
+    // 날짜 전체조회
+    @GetMapping("/todolist")
+    public ResponseEntity<?> getList(@RequestParam(required = false) String month) {
+        log.info("{}", month);
+        return ResponseEntity.ok().body(todoService.getAllTodoList(month));
+    }
+
+    // 해당날짜에 해당하는 모든 것 들고오기
     @GetMapping("/todo/{today}")
     public ResponseEntity<?> getDateList(@PathVariable String today) {
         return ResponseEntity.ok().body(todoService.getDateList(today));

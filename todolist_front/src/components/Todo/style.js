@@ -5,8 +5,31 @@ export const layout = css`
     flex-direction: column;
     align-items: center;
     margin: 0 50px;
-    width: 1600px;
+    width: 100%;
     height: 100%;
+
+    header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+`;
+export const headerEnd = css`
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    /* justify-content: center; */
+    align-items: end;
+    
+button {
+        font-family: "NanumBarunpenB";
+        font-size: 15px;
+        border: 1px solid red;
+        width: 80px;
+    }
 `;
 
 export const title = css`
@@ -56,7 +79,7 @@ export const time = css`
     border: none;
     border-bottom: 1px solid red;
     width: 140px;
-    transform: translate(468%);
+    /* transform: translate(468%); */
     &:focus {
         outline:none;
     }

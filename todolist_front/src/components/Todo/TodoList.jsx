@@ -48,7 +48,7 @@ function TodoList(props) {
     const getRender = async () => {
         let result = null;
         try {
-            const rs = await api.get("/todolist");
+            const rs = await api.get("/todolist/all");
             result = rs.data;
             setTodo(result);
         } catch (e) {
@@ -60,7 +60,7 @@ function TodoList(props) {
     const getRenderDate = async () => {
         let result = null;
         try {
-            const rs = await api.get(`/todolist`, {
+            const rs = await api.get("/todolist", {
                 params: {
                     month: today.todoDate
                 }
@@ -196,13 +196,19 @@ function TodoList(props) {
             <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen} editTodo={editTodo} setEditTodo={setEditTodo} />
             <header>
                 <div css={s.title}>
-                    <h1>TodoList</h1>
+                    <h1 onClick={()=>navigator("/")}>TodoList</h1>
                 </div>
-                <div css={s.login}>
-                    <button name='/login' onClick={handleLoginClick}>로그인</button>
-                    <button name='/register' onClick={handleLoginClick}> 회원가입</button>
+
+                {/* <div css={s.login} style={{ display: 'none' }}> */}
+                {/* <button name='/login' onClick={handleLoginClick} >로그인</button> */}
+                {/* <button name='/register' onClick={handleLoginClick}> 회원가입</button> */}
+                {/* </div> */}
+                <div css={s.headerEnd}>
+                    <div>
+                        <button onClick={getRender}>전체조회</button>
+                    </div>
+                    <input css={s.time} type='month' name='todoDate' value={today.todoDate} onChange={handleDateOnChange} />
                 </div>
-                <input css={s.time} type='month' name='todoDate' value={today.todoDate} onChange={handleDateOnChange} />
             </header>
             <div>
                 <div css={s.container}>

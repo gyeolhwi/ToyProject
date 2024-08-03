@@ -33,20 +33,8 @@ public class TodoServiceImpl implements TodoService {
 
     // 전체 조회
     @Override
-    public List<RespTodoListDto> getAllTodoList() {
-        List<Todo> todoList = todoMapper.getAllTodoList();
-
-        List<RespTodoListDto> respList = new ArrayList<>();
-        for(Todo todo : todoList) {
-            RespTodoListDto respListDto = RespTodoListDto.builder()
-                    .todoId(todo.getTodo_id())
-                    .todoText(todo.getTodo_text())
-                    .todoChkId(todo.getTodo_chk_id())
-                    .todoDate(todo.getTodo_date())
-                    .build();
-            respList.add(respListDto);
-        }
-        return respList;
+    public List<TodoDto.RespDto> getAllTodoList() {
+        return todoMapper.getAllList().stream().map(Todo::toDto).collect(Collectors.toList());
     }
     //날짜조회
     @Override

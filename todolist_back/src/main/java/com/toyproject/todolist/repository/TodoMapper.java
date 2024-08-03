@@ -12,7 +12,7 @@ public interface TodoMapper {
 
     List<Todo> getListAll(int userId);
 
-    List<Todo> getAllTodoList();
+    List<Todo> getAllList();
 
     List<Todo> getAllTodoList(String month);
 
