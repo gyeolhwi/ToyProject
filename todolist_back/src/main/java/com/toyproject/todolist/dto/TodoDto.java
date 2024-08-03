@@ -33,6 +33,7 @@ public class TodoDto {
         private int todoId;
         private String todoText;
         private int todoChkId;
+        private String todoDate;
     }
 
     //로그인 Dto

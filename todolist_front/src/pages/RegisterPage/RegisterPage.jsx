@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import '../../styles/sweetalert.css';
 
 function RegisterPage(props) {
-    
+    /*
     Swal.fire({
         title: "회원가입 성공!!",
         font: "Nanumpen",
@@ -20,6 +20,7 @@ function RegisterPage(props) {
             actions: "sweet-actions"
         },
     })
+        */
 
     return (
         <div css={s.ground}>

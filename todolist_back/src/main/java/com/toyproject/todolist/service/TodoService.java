@@ -14,7 +14,7 @@ public interface TodoService {
      List<TodoDto.RespDto> getListAll(int userid);
 
      // 전체 조회
-     List<RespTodoListDto> getAllTodoList();
+     List<TodoDto.RespDto> getAllTodoList();
      
      List<RespTodoListDto> getAllTodoList(String month);
 

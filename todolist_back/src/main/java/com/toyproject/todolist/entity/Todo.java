@@ -28,6 +28,7 @@ public class Todo {
                 .todoId(todo_id)
                 .todoText(todo_text)
                 .todoChkId(todo_chk_id)
+                .todoDate(todo_date)
                 .build();
     }
 
