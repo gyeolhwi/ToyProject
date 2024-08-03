@@ -5,10 +5,11 @@ import * as s from './style';
 import { useRecoilState } from 'recoil';
 import { getDate, todoAtom } from '../../atoms/atom';
 import api from '../../apis/instance';
+import Swal from 'sweetalert2';
 ReactModal.setAppElement("#root");
 
 
-function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
+function Modal({ isModalOpen, setModalOpen, editTodo, setEditTodo }) {
     // const [isModalOpen, setModalOpen] = useState(false);
     const [todo, setTodo] = useRecoilState(todoAtom);
     const [today, setToDay] = useRecoilState(getDate);
@@ -38,13 +39,29 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
         let result = null;
         try {
             api.put("/todo/edit", editTodo).then(response => {
-                console.log("성공");
-                closeModal();
-                getRenderDate();
+                Swal.fire({
+                    title: "수정 완료!",
+                    font: "Nanumpen",
+                    position: 'top',
+                    width: `400`,
+                    backdrop: `left top,
+                    no-repeat`,
+                    customClass: {
+                        popup: "sweet-back-img",
+                        title: "sweet-title",
+                        actions: "sweet-actions"
+                    },
+                }).then(rs => {
+                    if (rs.isConfirmed) {
+                        closeModal();
+                        getRenderDate();
+                    }
+                })
             });
         } catch (e) {
             console.error(e);
         }
+        return
     }
     const getRender = async () => {
         let result = null;
@@ -87,8 +104,8 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
                         padding: '20px',
                         width: '520px',
                         height: '600px',
-                        border: 'none', 
-                        background:'none'
+                        border: 'none',
+                        background: 'none'
                     }
                 }}
                 isOpen={isModalOpen}
@@ -102,7 +119,7 @@ function Modal({ isModalOpen, setModalOpen,editTodo, setEditTodo}) {
                     </header>
 
                     <div css={s.container}>
-                        <input type="text" name='todoText' value={editTodo.todoText} onChange={handleEditOnChange} onKeyDown={(e) => e.key === 'Enter' ? handleEditSubmit() : 'return'}  autoFocus />
+                        <input type="text" name='todoText' value={editTodo.todoText} onChange={handleEditOnChange} onKeyDown={(e) => e.key === 'Enter' ? handleEditSubmit() : 'return'} autoFocus />
                     </div>
                     <div css={s.button}>
                         <button onClick={handleEditSubmit}>확인</button>
