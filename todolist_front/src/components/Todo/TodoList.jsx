@@ -7,6 +7,7 @@ import { getDate, todoAtom } from '../../atoms/atom';
 import useInput from '../../hooks/useInput';
 import * as s from './style';
 import Modal from '../Modal/Modal';
+import Swal from 'sweetalert2';
 
 
 function TodoList(props) {
@@ -78,6 +79,11 @@ function TodoList(props) {
             getRenderDate();
         } catch (e) {
             console.error(e);
+        } finally {
+            setText({
+                todoId: "",
+                todoText: ""
+            });
         }
     }
 
@@ -85,7 +91,7 @@ function TodoList(props) {
         let result = null;
         try {
             const rs = await api.delete(`/todo/${id}`);
-            getRender();
+            getRenderDate();
         } catch (e) {
             console.error(e);
         }
@@ -128,16 +134,45 @@ function TodoList(props) {
         // 레스트문법 사용으로 id,text만 객체?로 묶여나옴
         const { checkedId, todoDate, ...rest } = todo.filter(t => t.todoId === parseInt(e.target.value))[0];
         setEditTodo(rest);
-        
+
     }
 
     const handleRemoveClick = (e) => {
-        if (window.confirm("삭제할껴?")) {
-            remove(e.target.value);
-        } else {
-            alert("취소됨");
-        }
+        Swal.fire({
+            title: "삭제 하시겠습니까?",
+            font: "Nanumpen",
+            showCancelButton: true,
+            confirmButtonText: "확인",
+            cancelButtonText: "취소",
+            position: 'top',
+            width: `400`,
+            backdrop: `left top,
+            no-repeat`,
+            customClass: {
+                popup: "sweet-back-img",
+                title: "sweet-title",
+                actions: "sweet-actions"
+            },
+        }).then(rs => {
+            if (rs.isConfirmed) {
+                remove(e.target.value);
+                Swal.fire({
+                    title: "삭제완료!",
+                    font: "Nanumpen",
+                    position: 'top',
+                    width: `400`,
+                    backdrop: `left top,
+                    no-repeat`,
+                    customClass: {
+                        popup: "sweet-back-img",
+                        title: "sweet-title",
+                        actions: "sweet-actions"
+                    },
+                })
+            }
+        });
     }
+
 
     useEffect(() => {
         // heart(editMode);
