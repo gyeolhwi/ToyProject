@@ -14,7 +14,7 @@ export const layout = css`
         align-items: center;
         align-content: center;
         flex-direction: column;
-        width: 100%;
+        width: 1440px;
     }
 `;
 export const headerEnd = css`
